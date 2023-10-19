@@ -2,22 +2,25 @@ const express = require('express')
 const mongoose = require('mongoose');
 
 const app = express()
+app.use(express.json())
 const port = 3000
 
 mongoose.connect('mongodb+srv://motavinicius:Aguia999*@catalogogames-api.1b1fxq3.mongodb.net/?retryWrites=true&w=majority');
 const Game = mongoose.model('Game', {
      name: String,
+     image_url: String,
      genero: String,
      lancamento: Number});
 
 app.get('/', async (req,res) => {
     const games = await Game.find()
-    res.send(games)
+    return res.send(games)
 })
 
 app.post('/', async (req,res) => {
     const game = new Game({
         name: req.body.name,
+        image_url: req.body.image_url,
         genero: req.body.genero,
         lancamento: req.body.lancamento
     })
@@ -28,6 +31,7 @@ app.post('/', async (req,res) => {
 app.put('/:id', async(req, res) => {
     const game = await Game.findByIdAndUpdate(req.params.id, {
         name: req.body.name,
+        image_url: req.body.image_url,
         genero: req.body.genero,
         lancamento: req.body.lancamento
     },  {
@@ -36,7 +40,7 @@ app.put('/:id', async(req, res) => {
     return res.send(game)
 })
 
-app.delete("/", async (req, res) => {
+app.delete("/:id", async (req, res) => {
     const game = await Game.findByIdAndRemove(req.params.id)
     return res.send(game)
 })

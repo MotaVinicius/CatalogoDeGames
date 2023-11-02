@@ -1,8 +1,13 @@
 const express = require('express')
 const mongoose = require('mongoose');
+var logger = require('morgan');
+var cors = require('cors');
 
 const app = express()
-app.use(express.json())
+
+app.use(cors());
+app.use(logger('dev'));
+app.use(express.json());
 const port = process.env.PORT || 3000 ;
 
 mongoose.connect('mongodb+srv://motavinicius:Aguia999*@catalogogames-api.1b1fxq3.mongodb.net/?retryWrites=true&w=majority');

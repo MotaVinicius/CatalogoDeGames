@@ -29,6 +29,26 @@ app.get('/', async (req,res) => {
     }
 })
 
+app.get('/full', async (req,res) => {
+    try{
+    const games = await Game.find({}).sort({name: +1})
+    res.status(200).json(games)
+    }catch(erro){
+        console.log(erro);
+        res.status(500).json({message: "Algo de errado aconteceu. Falha ao listar nossa biblioteca de games."})
+    }
+})
+
+app.get('/lancamento', async (req,res) => {
+    try{
+    const games = await Game.find({lancamento: 2023}).sort({lancamento: -1}).limit(15)
+    res.status(200).json(games)
+    }catch(erro){
+        console.log(erro);
+        res.status(500).json({message: "Algo de errado aconteceu. Falha ao listar nossa biblioteca de games."})
+    }
+})
+
 app.get('/busca', async (req, res) => {
     const { query } = req.query;
   

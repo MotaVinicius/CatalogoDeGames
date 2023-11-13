@@ -41,7 +41,9 @@ app.get('/full', async (req,res) => {
 
 app.get('/lancamento', async (req,res) => {
     try{
-    const games = await Game.find({lancamento: 2023}).sort({lancamento: -1}).limit(15)
+    const dataAtual = new Date();
+    const anoAtual = dataAtual.getFullYear();
+    const games = await Game.find({lancamento: { $in: [anoAtual, anoAtual -1]}}).sort({lancamento: -1}).limit(15)
     res.status(200).json(games)
     }catch(erro){
         console.log(erro);

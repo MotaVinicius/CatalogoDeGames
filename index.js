@@ -63,6 +63,21 @@ app.get('/busca', async (req, res) => {
     }
   });
 
+app.get('/detalhes/:id', async(req,res) => {
+    const id =req.params.id;
+    try{
+        const registro = await Game.findById(id);
+        if (registro) {
+            res.status(200).json(registro);
+          } else {
+            res.status(404).json({ message: "Registro não encontrado" });
+          }
+    }catch(erro){
+        console.log(erro);
+        res.status(500).json({message: "erro ao buscar o registro"})
+    }
+});
+
 app.post('/add', async (req,res) => {
     const game = new Game({
         name: req.body.name,

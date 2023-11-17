@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose');
 var logger = require('morgan');
 var cors = require('cors');
+var router = express.Router();
 
 const app = express()
 
@@ -125,3 +126,4 @@ app.listen(port, () => {
     console.log(`App running on port ${port}`)
 }) 
 //Em desenvolvimento
+module.exports = router;

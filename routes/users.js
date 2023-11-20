@@ -10,4 +10,6 @@ router.get('/gerasenhacrypto/:senha', function(req, res, next) {
     res.send('Não há senha para criptografar');
 });
 
+
+
 module.exports = router;

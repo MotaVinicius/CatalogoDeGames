@@ -118,9 +118,19 @@ app.put('/:id', async(req, res) => {
     return res.send(game)
 })
 
-app.delete("/:id", async (req, res) => {
-    const game = await Game.findByIdAndRemove(req.params.id)
-    return res.send(game)
+app.delete("/remover/:id", async (req, res) => {
+    const id = req.params.id
+    try{
+        const game = await Game.findByIdAndRemove(id)
+        if(game)
+        res.status(200).json({message: `O Jogo foi removido com sucesso`});
+    else 
+    res.status(200).json({message: "Registro não encontrado para remoção."});
+} catch(erro){
+  console.log(erro);
+  res.status(500).json({message: "Erro ao remover o registro solicitado."});
+}
+
 })
 
 app.listen(port, () => {

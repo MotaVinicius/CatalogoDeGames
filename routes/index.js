@@ -23,7 +23,7 @@ const Game = mongoose.model('Game', {
 
 app.get('/', async (req,res) => {
     try{
-    const games = await Game.find({}).sort({ratings: -1}).limit(15)
+    const games = await Game.find({}).sort({ratings: -1}).limit(16)
     res.status(200).json(games)
     }catch(erro){
         console.log(erro);
@@ -104,19 +104,27 @@ app.post('/add', async (req,res) => {
     
 })
 
-app.put('/:id', async(req, res) => {
-    const game = await Game.findByIdAndUpdate(req.params.id, {
+app.put('/editar/:id', async(req, res) => {
+    const id = req.params.id;
+    const game = await Game.findByIdAndUpdate(id, {
         name: req.body.name,
         description: req.body.description,
         image_url: req.body.image_url,
         genero: req.body.genero,
         ratings: req.body.ratings,
         lancamento: req.body.lancamento
-    },  {
-        new: true
     })
-    return res.send(game)
-})
+    try{
+        if(game)
+        res.status(200).json({message: `O jogo ${game.name} foi atualizado com sucesso`})
+        else 
+        res.status(200).json({message: "Registro não encontrado para edição."});
+    }catch(erro){
+        console.log(erro);
+        res.status(500).json({message: "Erro ao editar registro"})
+    }})
+
+
 
 app.delete("/remover/:id", async (req, res) => {
     const id = req.params.id

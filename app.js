@@ -11,9 +11,9 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-app.use(cors({ origin: 'http://localhost:3000',
+app.use(cors({ origin: 'http://localhost:5173',
 methods: ['GET','POST','PUT','DELETE','OPTIONS','HEAD'],
-credentials: true}));
+credentials: true, allowedHeaders: ['Content-Type']}));
 app.use(session({
     secret: "Cr1pt01d",
     resave: false,

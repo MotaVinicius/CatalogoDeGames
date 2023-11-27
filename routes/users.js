@@ -22,7 +22,7 @@ const LoginSchema = new mongoose.Schema({
   senha: String
 });
 
-// Adiciona um método estático para autenticar o usuário
+
 LoginSchema.statics.logar = async function(login, senhaCrypto) {
   return await this.findOne({ login, senha: senhaCrypto }).exec();
 };
@@ -35,13 +35,6 @@ db.once('open', () => {
   console.log('Conectado ao MongoDB!');
 });
 
-app.get('/gerasenhacrypto/:senha', function(req, res, next) {
-  if(req.params.senha){
-    let senhaCrypto = sha2.sha224(req.params.senha).toString('hex');
-    res.status(200).json({senhaCrypto: senhaCrypto});
-  }else
-    res.send('Não há senha para criptografar');
-});
 
 app.post('/addUser', async(req,res) =>{
   const login = new Login ({

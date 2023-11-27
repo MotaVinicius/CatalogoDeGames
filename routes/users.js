@@ -7,7 +7,9 @@ const mongoose = require('mongoose');
 
 const app = express()
 
-app.use(cors({ origin: 'http://localhost:5173',
+const originsCors = ['http://localhost:5173','https://visionary-dolphin-4c5211.netlify.app'];
+
+app.use(cors({ origin: originsCors,
 methods: ['GET','POST','PUT','DELETE','OPTIONS','HEAD'],
 credentials: true, allowedHeaders: ['Content-Type']}));
 app.use(logger('dev'));

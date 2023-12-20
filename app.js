@@ -11,7 +11,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-const originsCors = ['http://localhost:5173','https://visionary-dolphin-4c5211.netlify.app','https://6564cb3b1a68030082883b79--visionary-dolphin-4c5211.netlify.app'];
+const originsCors = ['http://localhost:5173','http://127.0.0.1:5500','https://visionary-dolphin-4c5211.netlify.app','https://6564cb3b1a68030082883b79--visionary-dolphin-4c5211.netlify.app','https://motavinicius.github.io/CatalogoDeGames-FrontEnd/'];
 
 app.use(cors({ origin: originsCors,
 methods: ['GET','POST','PUT','DELETE','OPTIONS','HEAD'],

@@ -11,7 +11,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-const originsCors = ['http://localhost:5173','http://127.0.0.1:5500','http://localhost:5175/CatalogoDeGames-FrontEnd','http://18.230.17.49:5175/CatalogoDeGames-FrontEnd','https://motavinicius.github.io/CatalogoDeGames-FrontEnd/'];
+const originsCors = ['http://localhost:5173','http://127.0.0.1:5500','http://localhost:5175/CatalogoDeGames-FrontEnd','http://172.31.10.15:5175/CatalogoDeGames-FrontEnd','http://18.230.17.49:5175/CatalogoDeGames-FrontEnd','https://motavinicius.github.io/CatalogoDeGames-FrontEnd/'];
 
 app.use(cors({ origin: originsCors,
 methods: ['GET','POST','PUT','DELETE','OPTIONS','HEAD'],

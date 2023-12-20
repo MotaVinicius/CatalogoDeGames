@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 
 const app = express()
 
-const originsCors = ['http://localhost:5173','https://visionary-dolphin-4c5211.netlify.app','http://18.230.17.49:5175/CatalogoDeGames-FrontEnd','https://motavinicius.github.io/CatalogoDeGames-FrontEnd/'];
+const originsCors = ['http://localhost:5173','http://localhost:5175/CatalogoDeGames-FrontEnd','http://18.230.17.49:5175/CatalogoDeGames-FrontEnd','https://motavinicius.github.io/CatalogoDeGames-FrontEnd/'];
 
 app.use(cors({ origin: originsCors,
 methods: ['GET','POST','PUT','DELETE','OPTIONS','HEAD'],
